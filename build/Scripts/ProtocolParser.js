@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ProtocolParser = void 0;
+exports.parseIMEI = exports.ProtocolParser = void 0;
 //import { IProtocolParser } from "../Interfaces/IProtocolParser";
 //import { IData } from "../Interfaces/IData";
 const PacketReader_1 = require("../Scripts/PacketReader");
@@ -51,3 +51,10 @@ class ProtocolParser {
     }
 }
 exports.ProtocolParser = ProtocolParser;
+function parseIMEI(imei) {
+    var decodedIMEI = "";
+    for (var i = imei.length - 1; i > 3; i -= 2)
+        decodedIMEI = imei.charAt(i) + decodedIMEI;
+    return decodedIMEI;
+}
+exports.parseIMEI = parseIMEI;
