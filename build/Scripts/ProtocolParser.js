@@ -7,7 +7,7 @@ const PacketReader_1 = require("../Scripts/PacketReader");
 const Data_1 = require("./AVL Data Parser/Data");
 //import { IGPRSparser } from "../Interfaces/IGPRSparser";
 const GPRSparser_1 = require("./GPRS Parser/GPRSparser");
-const CalcCRC16 = require('./../Scripts/CRC16.js').CalcCRC16;
+const CalcCRC16 = require('./CRC16.js').CalcCRC16;
 class ProtocolParser {
     constructor(packet, basic_read, on_ioElement_error) {
         var pr = new PacketReader_1.PacketReader(packet, 2, (x) => {

@@ -5,7 +5,7 @@ import { Data } from './AVL Data Parser/Data'
 //import { IGPRSparser } from "../Interfaces/IGPRSparser";
 import { GPRS } from './GPRS Parser/GPRSparser'
 
-const CalcCRC16 = require('./../Scripts/CRC16.js').CalcCRC16;
+const CalcCRC16 = require('./CRC16.js').CalcCRC16;
 
 export class ProtocolParser {
     Packet : string
@@ -53,4 +53,11 @@ export class ProtocolParser {
         }
         this.Content = content
     }
+}
+
+export function parseIMEI(imei: string): string {
+    var decodedIMEI = "";
+    for (var i = imei.length - 1; i > 3; i -= 2)
+        decodedIMEI = imei.charAt(i) + decodedIMEI;
+    return decodedIMEI
 }

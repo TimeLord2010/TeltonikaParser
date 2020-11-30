@@ -2,15 +2,22 @@
   "name": "complete-teltonika-parser",
   "version": "0.0.1",
   "description": "Parser for teltonika codecs",
-  "main": "index.js",
+  "main": "build/Scripts/ProtocolParser.js",
   "dependencies": {},
   "devDependencies": {},
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build" : "tsc",
+    "git-push": "git add . && git commit -m \"Automated commit\" && git push origin master"
   },
   "keywords": [
-    "teltonika"
+    "teltonika",
+    "teltonika-parser"
   ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TimeLord2010/TeltonikaParser"
+  },
   "author": "Vinícius Gabriel",
   "license": "ISC"
 }
