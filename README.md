@@ -31,7 +31,11 @@ class Data {
   AVL_Datas : AVL_Data[]
 }
 
+<<<<<<< HEAD
 class AVL_Data  {
+=======
+export class AVL_Data  {
+>>>>>>> a54bdc76c5197493a9623a905169260c2c462c36
     Timestamp : Date
     Priority : number
     GPSelement : GPSelement
