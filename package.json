@@ -1,6 +1,6 @@
 {
   "name": "complete-teltonika-parser",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Parser for teltonika codecs",
   "main": "build/Scripts/ProtocolParser.js",
   "dependencies": {},
@@ -8,7 +8,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build" : "tsc",
-    "push": "git add . && git commit -m \"Automated commit\" && git push origin master && npm publish"
+    "push": "tsc && git add . && git commit -m \"Automated commit\" && git push origin master && npm publish"
   },
   "keywords": [
     "teltonika",

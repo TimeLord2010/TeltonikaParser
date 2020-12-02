@@ -15,6 +15,7 @@ export declare let isDigitalOutput: (id: number) => boolean;
 export declare let isAnalogInput: (id: number) => boolean;
 export declare let isPhysical: (id: number) => boolean;
 export declare function isFMSid(id: number): boolean;
+export declare function isFMSorPhysical(id: number): boolean;
 export declare function castAVLIDtoAVLName(elements?: getOrganizedElementsReturn | null): {
     [avlName: string]: any;
 };
@@ -43,6 +44,7 @@ export declare function getAnalogInputs(_elements: Record<number, number | strin
 export declare function getNonFMSorPhysical(_elements: Record<number, number | string> | IOelement): {
     [id: number]: string | number;
 };
+export declare function isIOelement(obj: any): obj is IOelement;
 export declare class IOelement {
     EventID: number;
     ElementCount: number;

@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.IOelement = exports.getNonFMSorPhysical = exports.getAnalogInputs = exports.getDigitalOutputs = exports.getDigitalInputs = exports.getOrganizedElements = exports.getElementsWithoutFMS = exports.getFMSelements = exports.castAVLIDtoAVLName = exports.isFMSid = exports.isPhysical = exports.isAnalogInput = exports.isDigitalOutput = exports.isDigitalInput = exports.getAnalogInputsId = exports.getDigitalOutputsId = exports.getDigitalInputsId = exports.avlidDictionary = void 0;
+exports.IOelement = exports.isIOelement = exports.getNonFMSorPhysical = exports.getAnalogInputs = exports.getDigitalOutputs = exports.getDigitalInputs = exports.getOrganizedElements = exports.getElementsWithoutFMS = exports.getFMSelements = exports.castAVLIDtoAVLName = exports.isFMSorPhysical = exports.isFMSid = exports.isPhysical = exports.isAnalogInput = exports.isDigitalOutput = exports.isDigitalInput = exports.getAnalogInputsId = exports.getDigitalOutputsId = exports.getDigitalInputsId = exports.avlidDictionary = void 0;
 /**
 * Dictionary for avl name, given the AVL ID.
 * For some cases, the value is a dictionary containing the avl name and the respective table name.
@@ -179,6 +179,7 @@ exports.isFMSid = isFMSid;
 function isFMSorPhysical(id) {
     return exports.isPhysical(id) || isFMSid(id);
 }
+exports.isFMSorPhysical = isFMSorPhysical;
 function castAVLIDtoAVLName(elements = null) {
     var avl_names = {};
     //if (elements == null) elements = this.Elements
@@ -273,13 +274,8 @@ function getAnalogInputs(_elements) {
 }
 exports.getAnalogInputs = getAnalogInputs;
 function getNonFMSorPhysical(_elements) {
-    let elements = isIOelement(_elements) ? _elements.Elements : _elements;
-    return getNotFMSorPhysical(elements);
-}
-exports.getNonFMSorPhysical = getNonFMSorPhysical;
-function getNotFMSorPhysical(elements) {
     let nonFMSorPhysical = {};
-    for (let [key, value] of Object.entries(elements)) {
+    for (let [key, value] of Object.entries(_elements)) {
         let id = Number(key);
         if (isFMSorPhysical(id))
             continue;
@@ -287,9 +283,15 @@ function getNotFMSorPhysical(elements) {
     }
     return nonFMSorPhysical;
 }
+exports.getNonFMSorPhysical = getNonFMSorPhysical;
+// export function getNotFMSorPhysical(elements: { [id: number]: number | string }) {
+//     let elements = isIOelement(_elements) ? _elements.Elements : _elements
+//     return getNotFMSorPhysical(elements)
+// }
 function isIOelement(obj) {
     return typeof obj === 'object' && typeof obj.EventID === 'number' && typeof obj.ElementCount === 'number';
 }
+exports.isIOelement = isIOelement;
 class IOelement {
     constructor(reader, on_error, codec_id) {
         if (reader == null) {
