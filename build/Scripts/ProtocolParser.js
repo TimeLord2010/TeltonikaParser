@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.avlidDictionary = exports.isFMSorPhysical = exports.isIOelement = exports.isFMSid = exports.getNonFMSorPhysical = exports.getElementsWithoutFMS = exports.getDigitalOutputsId = exports.getDigitalInputsId = exports.getAnalogInputsId = exports.castAVLIDtoAVLName = exports.getFMSelements = exports.getAnalogInputs = exports.getDigitalOutputs = exports.getDigitalInputs = exports.parseIMEI = exports.ProtocolParser = void 0;
+exports.avlidDictionary = exports.isFMSorPhysical = exports.isPhysical = exports.isIOelement = exports.isFMSid = exports.getNonFMSorPhysical = exports.getElementsWithoutFMS = exports.getDigitalOutputsId = exports.getDigitalInputsId = exports.getAnalogInputsId = exports.castAVLIDtoAVLName = exports.getFMSelements = exports.getAnalogInputs = exports.getDigitalOutputs = exports.getDigitalInputs = exports.parseIMEI = exports.ProtocolParser = void 0;
 //import { IProtocolParser } from "../Interfaces/IProtocolParser";
 //import { IData } from "../Interfaces/IData";
 const PacketReader_1 = require("../Scripts/PacketReader");
@@ -20,6 +20,7 @@ Object.defineProperty(exports, "isFMSid", { enumerable: true, get: function () {
 Object.defineProperty(exports, "isIOelement", { enumerable: true, get: function () { return IOelement_1.isIOelement; } });
 Object.defineProperty(exports, "isFMSorPhysical", { enumerable: true, get: function () { return IOelement_1.isFMSorPhysical; } });
 Object.defineProperty(exports, "avlidDictionary", { enumerable: true, get: function () { return IOelement_1.avlidDictionary; } });
+Object.defineProperty(exports, "isPhysical", { enumerable: true, get: function () { return IOelement_1.isPhysical; } });
 //import { IGPRSparser } from "../Interfaces/IGPRSparser";
 const GPRSparser_1 = require("./GPRS Parser/GPRSparser");
 const CalcCRC16 = require('./CRC16.js').CalcCRC16;
