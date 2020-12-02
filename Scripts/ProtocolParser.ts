@@ -3,9 +3,9 @@
 import { PacketReader } from '../Scripts/PacketReader'
 import { AVL_Data as AvlData } from './AVL Data Parser/AVL_Data';
 import { Data as _data } from './AVL Data Parser/Data'
-import {IOelement as IoElement, getDigitalInputs as gdis, getDigitalOutputs as gdos, getAnalogInputs as gais, getFMSelements as gfms, castAVLIDtoAVLName as castid, getAnalogInputsId as gaiid, getDigitalInputsId as gdiid, getDigitalOutputsId as gdoid, getElementsWithoutFMS as gewof, getNonFMSorPhysical as gnfp, isFMSid as ifid, isIOelement as iio, isFMSorPhysical as isfp, avlidDictionary as avldict, isPhysical as isp} from './AVL Data Parser/IOelement'
+import {IOelement as IoElement, getDigitalInputs as gdis, getDigitalOutputs as gdos, getAnalogInputs as gais, getFMSelements as gfms, castAVLIDtoAVLName as castid, getAnalogInputsId as gaiid, getDigitalInputsId as gdiid, getDigitalOutputsId as gdoid, getElementsWithoutFMS as gewof, getNonFMSorPhysical as gnfp, isFMSid as ifid, isIOelement as iio, isFMSorPhysical as isfp, avlidDictionary as avldict, isPhysical as isp, getOrganizedElements as goe} from './AVL Data Parser/IOelement'
 //import { IGPRSparser } from "../Interfaces/IGPRSparser";
-import { GPRS } from './GPRS Parser/GPRSparser'
+import { GPRS as gprs } from './GPRS Parser/GPRSparser'
 
 const CalcCRC16 = require('./CRC16.js').CalcCRC16;
 
@@ -16,7 +16,7 @@ export class ProtocolParser {
     CodecID: number
     Quantity1: number
     CodecType: 'data sending' | 'GPRS messages'
-    Content : GPRS | _data | null
+    Content : gprs | _data | null
     Quantity2: number
     CRC: number
 
@@ -43,13 +43,13 @@ export class ProtocolParser {
         var expected_crc = CalcCRC16(crc_reader.remainingContent());
         if (expected_crc != this.CRC)
             throw new Error(`Found CRC (${this.CRC}) wasn't the correct one (${expected_crc}).`)
-        let content : Data | GPRS | null = null
+        let content : Data | gprs | null = null
         if ([0x08, 0x8E, 0x10].includes(this.CodecID)) {
             this.CodecType = "data sending"
             if (!basic_read) content = new _data(pr, on_ioElement_error, this.CodecID, this.Quantity1);
         } else if ([0x0C, 0x0D, 0x0E].includes(this.CodecID)) {
             this.CodecType = "GPRS messages"
-            if (!basic_read) content = new GPRS(pr)
+            if (!basic_read) content = new gprs(pr)
         } else {
             throw new Error(`Codec ${this.CodecID} not supported.`)
         }
@@ -66,10 +66,12 @@ export function parseIMEI(imei: string): string {
 
 //export const getDigitalOutputs
 
-export {gdis as getDigitalInputs, gdos as getDigitalOutputs, gais as getAnalogInputs, gfms as getFMSelements, castid as castAVLIDtoAVLName, gaiid as getAnalogInputsId, gdiid as getDigitalInputsId, gdoid as getDigitalOutputsId, gewof as getElementsWithoutFMS, gnfp as getNonFMSorPhysical, ifid as isFMSid, iio as isIOelement, isp as isPhysical, isfp as isFMSorPhysical, avldict as avlidDictionary}
+export {gdis as getDigitalInputs, gdos as getDigitalOutputs, gais as getAnalogInputs, gfms as getFMSelements, castid as castAVLIDtoAVLName, gaiid as getAnalogInputsId, gdiid as getDigitalInputsId, gdoid as getDigitalOutputsId, gewof as getElementsWithoutFMS, gnfp as getNonFMSorPhysical, ifid as isFMSid, iio as isIOelement, isp as isPhysical, isfp as isFMSorPhysical, goe as getOrganizedElements, avldict as avlidDictionary}
 
 export type Data = _data
 
 export type AVL_Data = AvlData
 
 export type IOelement = IoElement
+
+export type GPRS = gprs
