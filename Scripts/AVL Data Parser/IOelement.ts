@@ -178,7 +178,7 @@ export function isFMSid(id: number) {
     return (id >= 79 && id <= 113) || (id >= 122 && id <= 128) || (id >= 135 && id <= 139) || (id >= 10348 && id <= 10431)
 }
 
-function isFMSorPhysical(id: number) {
+export function isFMSorPhysical(id: number) {
     return isPhysical(id) || isFMSid(id)
 }
 
@@ -275,13 +275,8 @@ export function getAnalogInputs(_elements: Record<number, number | string> | IOe
 }
 
 export function getNonFMSorPhysical(_elements: Record<number, number | string> | IOelement) {
-    let elements = isIOelement(_elements) ? _elements.Elements : _elements
-    return getNotFMSorPhysical(elements)
-}
-
-function getNotFMSorPhysical(elements: { [id: number]: number | string }) {
     let nonFMSorPhysical: { [id: number]: number | string } = {}
-    for (let [key, value] of Object.entries(elements)) {
+    for (let [key, value] of Object.entries(_elements)) {
         let id = Number(key)
         if (isFMSorPhysical(id)) continue
         nonFMSorPhysical[id] = value
@@ -289,7 +284,12 @@ function getNotFMSorPhysical(elements: { [id: number]: number | string }) {
     return nonFMSorPhysical
 }
 
-function isIOelement(obj: any): obj is IOelement {
+// export function getNotFMSorPhysical(elements: { [id: number]: number | string }) {
+//     let elements = isIOelement(_elements) ? _elements.Elements : _elements
+//     return getNotFMSorPhysical(elements)
+// }
+
+export function isIOelement(obj: any): obj is IOelement {
     return typeof obj === 'object' && typeof obj.EventID === 'number' && typeof obj.ElementCount === 'number'
 }
 

@@ -3,7 +3,7 @@
 import { PacketReader } from '../Scripts/PacketReader'
 import { AVL_Data as AvlData } from './AVL Data Parser/AVL_Data';
 import { Data as _data } from './AVL Data Parser/Data'
-import {IOelement as IoElement} from './AVL Data Parser/IOelement'
+import {IOelement as IoElement, getDigitalInputs as gdis, getDigitalOutputs as gdos, getAnalogInputs as gais, getFMSelements as gfms, castAVLIDtoAVLName as castid, getAnalogInputsId as gaiid, getDigitalInputsId as gdiid, getDigitalOutputsId as gdoid, getElementsWithoutFMS as gewof, getNonFMSorPhysical as gnfp, isFMSid as ifid, isIOelement as iio, isFMSorPhysical as isfp, avlidDictionary as avldict} from './AVL Data Parser/IOelement'
 //import { IGPRSparser } from "../Interfaces/IGPRSparser";
 import { GPRS } from './GPRS Parser/GPRSparser'
 
@@ -63,6 +63,10 @@ export function parseIMEI(imei: string): string {
         decodedIMEI = imei.charAt(i) + decodedIMEI;
     return decodedIMEI
 }
+
+//export const getDigitalOutputs
+
+export {gdis as getDigitalInputs, gdos as getDigitalOutputs, gais as getAnalogInputs, gfms as getFMSelements, castid as castAVLIDtoAVLName, gaiid as getAnalogInputsId, gdiid as getDigitalInputsId, gdoid as getDigitalOutputsId, gewof as getElementsWithoutFMS, gnfp as getNonFMSorPhysical, ifid as isFMSid, iio as isIOelement, isfp as isFMSorPhysical, avldict as avlidDictionary}
 
 export type Data = _data
 
