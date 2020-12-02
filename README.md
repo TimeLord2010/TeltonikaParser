@@ -43,8 +43,8 @@ class AVL_Data  {
 }
 
 class GPSelement {
-    Longitude : string,
-    Latitude : string,
+    Longitude : number,
+    Latitude : number,
     Altitude : number,
     Angle : number,
     Satellites : number,
