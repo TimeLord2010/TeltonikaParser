@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.avlidDictionary = exports.getOrganizedElements = exports.isFMSorPhysical = exports.isPhysical = exports.isIOelement = exports.isFMSid = exports.getNonFMSorPhysical = exports.getElementsWithoutFMS = exports.getDigitalOutputsId = exports.getDigitalInputsId = exports.getAnalogInputsId = exports.castAVLIDtoAVLName = exports.getFMSelements = exports.getAnalogInputs = exports.getDigitalOutputs = exports.getDigitalInputs = exports.parseIMEI = exports.ProtocolParser = void 0;
+exports.avlidDictionary = exports.isDigitalOutput = exports.isDigitalInput = exports.isAnalogInput = exports.getOrganizedElements = exports.isFMSorPhysical = exports.isPhysical = exports.isIOelement = exports.isFMSid = exports.getNonFMSorPhysical = exports.getElementsWithoutFMS = exports.getDigitalOutputsId = exports.getDigitalInputsId = exports.getAnalogInputsId = exports.castAVLIDtoAVLName = exports.getFMSelements = exports.getAnalogInputs = exports.getDigitalOutputs = exports.getDigitalInputs = exports.parseIMEI = exports.ProtocolParser = void 0;
 //import { IProtocolParser } from "../Interfaces/IProtocolParser";
 //import { IData } from "../Interfaces/IData";
 const PacketReader_1 = require("../Scripts/PacketReader");
@@ -22,6 +22,9 @@ Object.defineProperty(exports, "isFMSorPhysical", { enumerable: true, get: funct
 Object.defineProperty(exports, "avlidDictionary", { enumerable: true, get: function () { return IOelement_1.avlidDictionary; } });
 Object.defineProperty(exports, "isPhysical", { enumerable: true, get: function () { return IOelement_1.isPhysical; } });
 Object.defineProperty(exports, "getOrganizedElements", { enumerable: true, get: function () { return IOelement_1.getOrganizedElements; } });
+Object.defineProperty(exports, "isAnalogInput", { enumerable: true, get: function () { return IOelement_1.isAnalogInput; } });
+Object.defineProperty(exports, "isDigitalInput", { enumerable: true, get: function () { return IOelement_1.isDigitalInput; } });
+Object.defineProperty(exports, "isDigitalOutput", { enumerable: true, get: function () { return IOelement_1.isDigitalOutput; } });
 //import { IGPRSparser } from "../Interfaces/IGPRSparser";
 const GPRSparser_1 = require("./GPRS Parser/GPRSparser");
 const CalcCRC16 = require('./CRC16.js').CalcCRC16;
