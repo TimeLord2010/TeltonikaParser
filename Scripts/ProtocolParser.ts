@@ -2,7 +2,7 @@
 //import { IData } from "../Interfaces/IData";
 import { PacketReader } from '../Scripts/PacketReader'
 import { AVL_Data as AvlData } from './AVL Data Parser/AVL_Data';
-import { Data } from './AVL Data Parser/Data'
+import { Data as _data } from './AVL Data Parser/Data'
 import {IOelement as IoElement} from './AVL Data Parser/IOelement'
 //import { IGPRSparser } from "../Interfaces/IGPRSparser";
 import { GPRS } from './GPRS Parser/GPRSparser'
@@ -16,7 +16,7 @@ export class ProtocolParser {
     CodecID: number
     Quantity1: number
     CodecType: 'data sending' | 'GPRS messages'
-    Content : GPRS | Data | null
+    Content : GPRS | _data | null
     Quantity2: number
     CRC: number
 
@@ -46,7 +46,7 @@ export class ProtocolParser {
         let content : Data | GPRS | null = null
         if ([0x08, 0x8E, 0x10].includes(this.CodecID)) {
             this.CodecType = "data sending"
-            if (!basic_read) content = new Data(pr, on_ioElement_error, this.CodecID, this.Quantity1);
+            if (!basic_read) content = new _data(pr, on_ioElement_error, this.CodecID, this.Quantity1);
         } else if ([0x0C, 0x0D, 0x0E].includes(this.CodecID)) {
             this.CodecType = "GPRS messages"
             if (!basic_read) content = new GPRS(pr)
@@ -63,6 +63,8 @@ export function parseIMEI(imei: string): string {
         decodedIMEI = imei.charAt(i) + decodedIMEI;
     return decodedIMEI
 }
+
+export type Data = _data
 
 export type AVL_Data = AvlData
 
