@@ -1,7 +1,9 @@
 //import { IProtocolParser } from "../Interfaces/IProtocolParser";
 //import { IData } from "../Interfaces/IData";
 import { PacketReader } from '../Scripts/PacketReader'
+import { AVL_Data as AvlData } from './AVL Data Parser/AVL_Data';
 import { Data } from './AVL Data Parser/Data'
+import {IOelement as IoElement} from './AVL Data Parser/IOelement'
 //import { IGPRSparser } from "../Interfaces/IGPRSparser";
 import { GPRS } from './GPRS Parser/GPRSparser'
 
@@ -61,3 +63,7 @@ export function parseIMEI(imei: string): string {
         decodedIMEI = imei.charAt(i) + decodedIMEI;
     return decodedIMEI
 }
+
+export type AVL_Data = AvlData
+
+export type IOelement = IoElement

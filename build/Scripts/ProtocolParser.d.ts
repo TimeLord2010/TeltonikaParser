@@ -1,4 +1,6 @@
+import { AVL_Data as AvlData } from './AVL Data Parser/AVL_Data';
 import { Data } from './AVL Data Parser/Data';
+import { IOelement as IoElement } from './AVL Data Parser/IOelement';
 import { GPRS } from './GPRS Parser/GPRSparser';
 export declare class ProtocolParser {
     Packet: string;
@@ -13,3 +15,5 @@ export declare class ProtocolParser {
     constructor(packet: string, basic_read: boolean, on_ioElement_error: (e: Error) => void);
 }
 export declare function parseIMEI(imei: string): string;
+export declare type AVL_Data = AvlData;
+export declare type IOelement = IoElement;
