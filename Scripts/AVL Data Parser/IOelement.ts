@@ -275,8 +275,9 @@ export function getAnalogInputs(_elements: Record<number, number | string> | IOe
 }
 
 export function getNonFMSorPhysical(_elements: Record<number, number | string> | IOelement) {
+    let elements = isIOelement(_elements) ? _elements.Elements : _elements
     let nonFMSorPhysical: { [id: number]: number | string } = {}
-    for (let [key, value] of Object.entries(_elements)) {
+    for (let [key, value] of Object.entries(elements)) {
         let id = Number(key)
         if (isFMSorPhysical(id)) continue
         nonFMSorPhysical[id] = value

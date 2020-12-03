@@ -274,8 +274,9 @@ function getAnalogInputs(_elements) {
 }
 exports.getAnalogInputs = getAnalogInputs;
 function getNonFMSorPhysical(_elements) {
+    let elements = isIOelement(_elements) ? _elements.Elements : _elements;
     let nonFMSorPhysical = {};
-    for (let [key, value] of Object.entries(_elements)) {
+    for (let [key, value] of Object.entries(elements)) {
         let id = Number(key);
         if (isFMSorPhysical(id))
             continue;
