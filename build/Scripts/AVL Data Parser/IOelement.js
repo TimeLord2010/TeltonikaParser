@@ -274,10 +274,12 @@ function getAnalogInputs(_elements) {
 }
 exports.getAnalogInputs = getAnalogInputs;
 function getNonFMSorPhysical(_elements) {
-    let elements = isIOelement(_elements) ? _elements.Elements : _elements;
+    let elements = hasElements(_elements) ? _elements.Elements : _elements;
     let nonFMSorPhysical = {};
     for (let [key, value] of Object.entries(elements)) {
         let id = Number(key);
+        if (Number.isNaN(id))
+            throw new Error(`Invalid id in 'getNonFMSorPhysical'. Parameter elements: ${JSON.stringify(elements)}`);
         if (isFMSorPhysical(id))
             continue;
         nonFMSorPhysical[id] = value;
@@ -285,6 +287,9 @@ function getNonFMSorPhysical(_elements) {
     return nonFMSorPhysical;
 }
 exports.getNonFMSorPhysical = getNonFMSorPhysical;
+function hasElements(obj) {
+    return obj && obj.Elements;
+}
 // export function getNotFMSorPhysical(elements: { [id: number]: number | string }) {
 //     let elements = isIOelement(_elements) ? _elements.Elements : _elements
 //     return getNotFMSorPhysical(elements)

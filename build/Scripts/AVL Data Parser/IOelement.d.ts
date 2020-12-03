@@ -41,7 +41,9 @@ export declare function getAnalogInputs(_elements: Record<number, number | strin
     3: string | number;
     4: string | number;
 };
-export declare function getNonFMSorPhysical(_elements: Record<number, number | string> | IOelement): {
+export declare function getNonFMSorPhysical(_elements: Record<number, number | string> | {
+    Elements: Record<number, number | string>;
+}): {
     [id: number]: string | number;
 };
 export declare function isIOelement(obj: any): obj is IOelement;

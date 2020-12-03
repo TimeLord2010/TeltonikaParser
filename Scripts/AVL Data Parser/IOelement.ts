@@ -274,15 +274,20 @@ export function getAnalogInputs(_elements: Record<number, number | string> | IOe
     }
 }
 
-export function getNonFMSorPhysical(_elements: Record<number, number | string> | IOelement) {
-    let elements = isIOelement(_elements) ? _elements.Elements : _elements
+export function getNonFMSorPhysical(_elements: Record<number, number | string> | { Elements : Record<number, number | string>}) {
+    let elements = hasElements(_elements) ? _elements.Elements : _elements
     let nonFMSorPhysical: { [id: number]: number | string } = {}
     for (let [key, value] of Object.entries(elements)) {
         let id = Number(key)
+        if (Number.isNaN(id)) throw new Error(`Invalid id in 'getNonFMSorPhysical'. Parameter elements: ${JSON.stringify(elements)}`)
         if (isFMSorPhysical(id)) continue
         nonFMSorPhysical[id] = value
     }
     return nonFMSorPhysical
+}
+
+function hasElements (obj : any) : obj is { Elements: Record<number, number | string>} {
+    return obj && obj.Elements
 }
 
 // export function getNotFMSorPhysical(elements: { [id: number]: number | string }) {
