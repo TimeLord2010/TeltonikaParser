@@ -244,24 +244,36 @@ export function getOrganizedElements(_elements: Record<number, number | string> 
     return obj
 }
 
+function getDigitals (elements: Record<number, number | string>, ids : number[]) {
+    if (ids.length != 4) throw new Error('Physical values must have length 4.')
+    let obj : Record<number, boolean> = {}
+    for (let i = 0; i < 4; i++) {
+        let value = elements[ids[i]]
+        if (value != null) obj[i + 1] = value == 1
+    }
+    return obj
+}
+
 export function getDigitalInputs(_elements: Record<number, number | string> | IOelement): Iphysical<boolean> {
     let elements = isIOelement(_elements) ? _elements.Elements : _elements
-    return {
-        1: elements[1] == 1,
-        2: elements[2] == 1,
-        3: elements[3] == 1,
-        4: elements[4] == 1
-    }
+    return getDigitals(elements, [1,2,3,4])
+    // return {
+    //     1: elements[1] == 1,
+    //     2: elements[2] == 1,
+    //     3: elements[3] == 1,
+    //     4: elements[4] == 1
+    // }
 }
 
 export function getDigitalOutputs(_elements: Record<number, number | string> | IOelement) {
     let elements = isIOelement(_elements) ? _elements.Elements : _elements
-    return {
-        1: elements[179] == 1,
-        2: elements[180] == 1,
-        3: elements[50] == 1,
-        4: elements[51] == 1
-    }
+    return getDigitals(elements, [179, 180, 50, 51])
+    // return {
+    //     1: elements[179] == 1,
+    //     2: elements[180] == 1,
+    //     3: elements[50] == 1,
+    //     4: elements[51] == 1
+    // }
 }
 
 export function getAnalogInputs(_elements: Record<number, number | string> | IOelement) {
