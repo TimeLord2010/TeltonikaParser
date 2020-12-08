@@ -1,6 +1,6 @@
 export interface IGPSelement {
-    Longitude : string | number,
-    Latitude : string | number,
+    Longitude : number,
+    Latitude : number,
     Altitude : number,
     Angle : number,
     Satellites : number,
