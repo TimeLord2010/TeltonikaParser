@@ -8,7 +8,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build" : "tsc",
-    "push": "tsc && git add . && git commit -m \"Automated commit\" && git push origin master "
+    "push": "tsc && git add . && git commit -m \"Automated commit\" && git push origin master"
   },
   "keywords": [
     "teltonika",
