@@ -1,6 +1,5 @@
-
-import { IGPSelement } from "../../Interfaces/IGPSelement";
 import { PacketReader } from "../../Scripts/PacketReader";
+import { IGPSelement } from "./GPSelement";
 import { IOelement } from "./IOelement";
 
 const GPSelement = require('./GPSelement.js').default;

@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.GPSelement = exports.defaultGPSElement = exports.isIGPSelement = void 0;
 const to_binary = (value) => (value >>> 0).toString(2);
 function ProcessReal(value) {
     let binary = to_binary(value);
@@ -22,6 +23,21 @@ function getGPSdata(num) {
     return num * 0.0000001;
     //expect(result).toBeCloseTo(54.714636)
 }
+function isIGPSelement(obj) {
+    return obj && typeof obj.Angle === 'number' && typeof obj.Longitude === 'number' && typeof obj.Latitude === 'number';
+}
+exports.isIGPSelement = isIGPSelement;
+function defaultGPSElement(longitude = 0, latitude = 0) {
+    return {
+        Latitude: latitude,
+        Longitude: longitude,
+        Altitude: 0,
+        Angle: 0,
+        Satellites: 0,
+        Speed: 0
+    };
+}
+exports.defaultGPSElement = defaultGPSElement;
 class GPSelement {
     constructor(packet_reader) {
         this.Longitude = getGPSdata(packet_reader.read(4));
@@ -32,4 +48,4 @@ class GPSelement {
         this.Speed = packet_reader.read(2);
     }
 }
-exports.default = GPSelement;
+exports.GPSelement = GPSelement;

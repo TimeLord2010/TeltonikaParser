@@ -1,5 +1,3 @@
-import { IGPSelement } from "./IGPSelement";
-
 export interface Iphysical<T> {
     1?: T,
     2?: T,
