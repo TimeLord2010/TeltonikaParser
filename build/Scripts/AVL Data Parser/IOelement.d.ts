@@ -29,12 +29,7 @@ interface getOrganizedElementsReturn {
 }
 export declare function getOrganizedElements(_elements: Record<number, number | string> | IOelement): getOrganizedElementsReturn;
 export declare function getDigitalInputs(_elements: Record<number, number | string> | IOelement): Iphysical<boolean>;
-export declare function getDigitalOutputs(_elements: Record<number, number | string> | IOelement): {
-    1: boolean;
-    2: boolean;
-    3: boolean;
-    4: boolean;
-};
+export declare function getDigitalOutputs(_elements: Record<number, number | string> | IOelement): Record<number, boolean>;
 export declare function getAnalogInputs(_elements: Record<number, number | string> | IOelement): {
     1: string | number;
     2: string | number;

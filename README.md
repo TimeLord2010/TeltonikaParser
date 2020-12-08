@@ -81,4 +81,5 @@ function extractValue (x: string) => {
 ## NOTICE
 
 - If the data packet has an invalid CRC, then the parser will fail throwing an exception;
-- This is a PROTOCOL parser. It does not parse the device IMEI. For that, use the function parseIMEI.
+- This is a PROTOCOL parser. It does not parse the device IMEI. For that, use the function parseIMEI;
+- The file "AVL Data Parser/IOelement" has some useful funcitons and an avl id translator for teltonika device model FMB640.
