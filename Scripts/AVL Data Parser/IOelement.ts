@@ -182,6 +182,16 @@ export function isFMSorPhysical(id: number) {
     return isPhysical(id) || isFMSid(id)
 }
 
+export function getBooleanDigitalAnalog (id: number, value: number) {
+    if (AnalogInputsId.includes(id)) {
+        return value > 6000
+    }
+    if (DigitalInputsId.includes(id) || DigitalOutputsId.includes(id)) {
+        return value == 1
+    }
+    throw new Error(`Id is not from digital or analog element.`)
+}
+
 export function castAVLIDtoAVLName(elements: getOrganizedElementsReturn | null = null) {
     var avl_names: { [avlName: string]: any } = {}
     //if (elements == null) elements = this.Elements

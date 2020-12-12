@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.IOelement = exports.isIOelement = exports.getNonFMSorPhysical = exports.getAnalogInputs = exports.getDigitalOutputs = exports.getDigitalInputs = exports.getOrganizedElements = exports.getElementsWithoutFMS = exports.getFMSelements = exports.castAVLIDtoAVLName = exports.isFMSorPhysical = exports.isFMSid = exports.isPhysical = exports.isAnalogInput = exports.isDigitalOutput = exports.isDigitalInput = exports.AnalogInputsId = exports.DigitalOutputsId = exports.DigitalInputsId = exports.avlidDictionary = void 0;
+exports.IOelement = exports.isIOelement = exports.getNonFMSorPhysical = exports.getAnalogInputs = exports.getDigitalOutputs = exports.getDigitalInputs = exports.getOrganizedElements = exports.getElementsWithoutFMS = exports.getFMSelements = exports.castAVLIDtoAVLName = exports.getBooleanDigitalAnalog = exports.isFMSorPhysical = exports.isFMSid = exports.isPhysical = exports.isAnalogInput = exports.isDigitalOutput = exports.isDigitalInput = exports.AnalogInputsId = exports.DigitalOutputsId = exports.DigitalInputsId = exports.avlidDictionary = void 0;
 /**
 * Dictionary for avl name, given the AVL ID.
 * For some cases, the value is a dictionary containing the avl name and the respective table name.
@@ -177,6 +177,16 @@ function isFMSorPhysical(id) {
     return exports.isPhysical(id) || isFMSid(id);
 }
 exports.isFMSorPhysical = isFMSorPhysical;
+function getBooleanDigitalAnalog(id, value) {
+    if (exports.AnalogInputsId.includes(id)) {
+        return value > 6000;
+    }
+    if (exports.DigitalInputsId.includes(id) || exports.DigitalOutputsId.includes(id)) {
+        return value == 1;
+    }
+    throw new Error(`Id is not from digital or analog element.`);
+}
+exports.getBooleanDigitalAnalog = getBooleanDigitalAnalog;
 function castAVLIDtoAVLName(elements = null) {
     var avl_names = {};
     //if (elements == null) elements = this.Elements

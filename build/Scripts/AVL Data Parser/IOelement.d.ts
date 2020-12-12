@@ -16,6 +16,7 @@ export declare let isAnalogInput: (id: number) => boolean;
 export declare let isPhysical: (id: number) => boolean;
 export declare function isFMSid(id: number): boolean;
 export declare function isFMSorPhysical(id: number): boolean;
+export declare function getBooleanDigitalAnalog(id: number, value: number): boolean;
 export declare function castAVLIDtoAVLName(elements?: getOrganizedElementsReturn | null): {
     [avlName: string]: any;
 };

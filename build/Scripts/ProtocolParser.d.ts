@@ -1,6 +1,6 @@
 import { AVL_Data as AvlData } from './AVL Data Parser/AVL_Data';
 import { Data as _data } from './AVL Data Parser/Data';
-import { isIOelement, getDigitalInputs, getDigitalOutputs, getAnalogInputs, getFMSelements, castAVLIDtoAVLName, getElementsWithoutFMS, getNonFMSorPhysical, isFMSid, isFMSorPhysical, getOrganizedElements, IOelement } from './AVL Data Parser/IOelement';
+import { IOelement, isIOelement, getDigitalInputs, getDigitalOutputs, getAnalogInputs, getFMSelements, castAVLIDtoAVLName, getElementsWithoutFMS, getNonFMSorPhysical, isFMSid, isFMSorPhysical, getOrganizedElements, getBooleanDigitalAnalog } from './AVL Data Parser/IOelement';
 import { GPRS as gprs } from './GPRS Parser/GPRSparser';
 export declare class ProtocolParser {
     Packet: string;
@@ -34,6 +34,7 @@ export declare const FMB640Utils: {
     isAnalogInput: (id: number) => boolean;
     isDigitalInput: (id: number) => boolean;
     isDigitalOutput: (id: number) => boolean;
+    getBooleanDigitalAnalog: typeof getBooleanDigitalAnalog;
 };
 export { isIOelement };
 export declare type Data = _data;

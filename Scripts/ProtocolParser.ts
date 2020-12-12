@@ -5,6 +5,7 @@ import { AVL_Data as AvlData } from './AVL Data Parser/AVL_Data';
 import { Data as _data } from './AVL Data Parser/Data'
 import {
     //IOelement as IoElement, 
+    IOelement,
     isIOelement, 
     // getDigitalInputs as gdis, 
     // getDigitalOutputs as gdos, 
@@ -43,7 +44,7 @@ import {
     isAnalogInput, 
     isDigitalInput, 
     isDigitalOutput,
-    IOelement
+    getBooleanDigitalAnalog
 } from './AVL Data Parser/IOelement'
 //import { IGPRSparser } from "../Interfaces/IGPRSparser";
 import { GPRS as gprs } from './GPRS Parser/GPRSparser'
@@ -145,6 +146,7 @@ export const FMB640Utils = {
     isAnalogInput, 
     isDigitalInput, 
     isDigitalOutput, 
+    getBooleanDigitalAnalog
 }
 
 export {isIOelement}
@@ -153,7 +155,7 @@ export type Data = _data
 
 export type AVL_Data = AvlData
 
-export {IOelement}
+export { IOelement }
 //export type IOelement = IOelement
 
 export type GPRS = gprs

@@ -6,10 +6,10 @@ exports.IOelement = exports.isIOelement = exports.FMB640Utils = exports.parseIME
 const PacketReader_1 = require("../Scripts/PacketReader");
 const Data_1 = require("./AVL Data Parser/Data");
 const IOelement_1 = require("./AVL Data Parser/IOelement");
-Object.defineProperty(exports, "isIOelement", { enumerable: true, get: function () { return 
+Object.defineProperty(exports, "IOelement", { enumerable: true, get: function () { return 
     //IOelement as IoElement, 
-    IOelement_1.isIOelement; } });
-Object.defineProperty(exports, "IOelement", { enumerable: true, get: function () { return IOelement_1.IOelement; } });
+    IOelement_1.IOelement; } });
+Object.defineProperty(exports, "isIOelement", { enumerable: true, get: function () { return IOelement_1.isIOelement; } });
 //import { IGPRSparser } from "../Interfaces/IGPRSparser";
 const GPRSparser_1 = require("./GPRS Parser/GPRSparser");
 const CalcCRC16 = require('./CRC16.js').CalcCRC16;
@@ -102,4 +102,5 @@ exports.FMB640Utils = {
     isAnalogInput: IOelement_1.isAnalogInput,
     isDigitalInput: IOelement_1.isDigitalInput,
     isDigitalOutput: IOelement_1.isDigitalOutput,
+    getBooleanDigitalAnalog: IOelement_1.getBooleanDigitalAnalog
 };
