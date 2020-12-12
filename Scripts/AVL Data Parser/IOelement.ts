@@ -160,11 +160,11 @@ export const avlidDictionary: IavlDict = {
     10431: "Tell Tale 3",
 };
 
-export let getDigitalInputsId = () => [1, 2, 3, 4]
+export const DigitalInputsId = [1, 2, 3, 4]
 
-export let getDigitalOutputsId = () => [179, 180, 50, 51]
+export const DigitalOutputsId = [179, 180, 50, 51]
 
-export let getAnalogInputsId = () => [9, 10, 11, 245]
+export const AnalogInputsId = [9, 10, 11, 245]
 
 export let isDigitalInput = (id: number) => [1, 2, 3, 4].includes(id)
 

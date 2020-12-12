@@ -3,7 +3,48 @@
 import { PacketReader } from '../Scripts/PacketReader'
 import { AVL_Data as AvlData } from './AVL Data Parser/AVL_Data';
 import { Data as _data } from './AVL Data Parser/Data'
-import {IOelement as IoElement, getDigitalInputs as gdis, getDigitalOutputs as gdos, getAnalogInputs as gais, getFMSelements as gfms, castAVLIDtoAVLName as castid, getAnalogInputsId as gaiid, getDigitalInputsId as gdiid, getDigitalOutputsId as gdoid, getElementsWithoutFMS as gewof, getNonFMSorPhysical as gnfp, isFMSid as ifid, isIOelement as iio, isFMSorPhysical as isfp, avlidDictionary as avldict, isPhysical as isp, getOrganizedElements as goe, isAnalogInput as iai, isDigitalInput as idi, isDigitalOutput as ido} from './AVL Data Parser/IOelement'
+import {
+    //IOelement as IoElement, 
+    isIOelement, 
+    // getDigitalInputs as gdis, 
+    // getDigitalOutputs as gdos, 
+    // getAnalogInputs as gais, 
+    // getFMSelements as gfms, 
+    // castAVLIDtoAVLName as castid, 
+    // AnalogInputsId as aiid, 
+    // DigitalInputsId as diid, 
+    // DigitalOutputsId as doid, 
+    // getElementsWithoutFMS as gewof, 
+    // getNonFMSorPhysical as gnfp, 
+    // isFMSid as ifid, 
+    // isIOelement as iio, 
+    // isFMSorPhysical as isfp, 
+    // avlidDictionary as avldict, 
+    // isPhysical as isp, 
+    // getOrganizedElements as goe, 
+    // isAnalogInput as iai, 
+    // isDigitalInput as idi, 
+    // isDigitalOutput as ido
+    getDigitalInputs, 
+    getDigitalOutputs, 
+    getAnalogInputs, 
+    getFMSelements, 
+    castAVLIDtoAVLName, 
+    AnalogInputsId, 
+    DigitalInputsId, 
+    DigitalOutputsId, 
+    getElementsWithoutFMS, 
+    getNonFMSorPhysical, 
+    isFMSid, 
+    isFMSorPhysical, 
+    avlidDictionary, 
+    isPhysical, 
+    getOrganizedElements, 
+    isAnalogInput, 
+    isDigitalInput, 
+    isDigitalOutput,
+    IOelement
+} from './AVL Data Parser/IOelement'
 //import { IGPRSparser } from "../Interfaces/IGPRSparser";
 import { GPRS as gprs } from './GPRS Parser/GPRSparser'
 
@@ -66,12 +107,53 @@ export function parseIMEI(imei: string): string {
 
 //export const getDigitalOutputs
 
-export {gdis as getDigitalInputs, gdos as getDigitalOutputs, gais as getAnalogInputs, gfms as getFMSelements, castid as castAVLIDtoAVLName, gaiid as getAnalogInputsId, gdiid as getDigitalInputsId, gdoid as getDigitalOutputsId, gewof as getElementsWithoutFMS, gnfp as getNonFMSorPhysical, ifid as isFMSid, iio as isIOelement, isp as isPhysical, isfp as isFMSorPhysical, goe as getOrganizedElements, iai as isAnalogInput, idi as isDigitalInput, ido as isDigitalOutput, avldict as avlidDictionary}
+export const FMB640Utils = {
+    // aiid as AnalogInputsId, 
+    // diid as DigitalInputsId, 
+    // doid as DigitalOutputsId, 
+    // avldict as avlidDictionary,
+    // gdis as getDigitalInputs, 
+    // gdos as getDigitalOutputs, 
+    // gais as getAnalogInputs, 
+    // gfms as getFMSelements, 
+    // castid as castAVLIDtoAVLName, 
+    // gewof as getElementsWithoutFMS, 
+    // gnfp as getNonFMSorPhysical, 
+    // ifid as isFMSid, 
+    // iio as isIOelement, 
+    // isp as isPhysical, 
+    // isfp as isFMSorPhysical, 
+    // goe as getOrganizedElements, 
+    // iai as isAnalogInput, 
+    // idi as isDigitalInput, 
+    // ido as isDigitalOutput, 
+    AnalogInputsId, 
+    DigitalInputsId, 
+    DigitalOutputsId, 
+    avlidDictionary,
+    getDigitalInputs, 
+    getDigitalOutputs, 
+    getAnalogInputs, 
+    getFMSelements, 
+    castAVLIDtoAVLName, 
+    getElementsWithoutFMS, 
+    getNonFMSorPhysical, 
+    isFMSid, 
+    isPhysical, 
+    isFMSorPhysical, 
+    getOrganizedElements, 
+    isAnalogInput, 
+    isDigitalInput, 
+    isDigitalOutput, 
+}
+
+export {isIOelement}
 
 export type Data = _data
 
 export type AVL_Data = AvlData
 
-export type IOelement = IoElement
+export {IOelement}
+//export type IOelement = IOelement
 
 export type GPRS = gprs
