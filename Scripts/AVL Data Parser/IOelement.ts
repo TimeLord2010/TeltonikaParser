@@ -160,11 +160,11 @@ export const avlidDictionary: IavlDict = {
     10431: "Tell Tale 3",
 };
 
-export let getDigitalInputsId = () => [1, 2, 3, 4]
+export const DigitalInputsId = [1, 2, 3, 4]
 
-export let getDigitalOutputsId = () => [179, 180, 50, 51]
+export const DigitalOutputsId = [179, 180, 50, 51]
 
-export let getAnalogInputsId = () => [9, 10, 11, 245]
+export const AnalogInputsId = [9, 10, 11, 245]
 
 export let isDigitalInput = (id: number) => [1, 2, 3, 4].includes(id)
 
@@ -180,6 +180,16 @@ export function isFMSid(id: number) {
 
 export function isFMSorPhysical(id: number) {
     return isPhysical(id) || isFMSid(id)
+}
+
+export function getBooleanDigitalAnalog (id: number, value: number) {
+    if (AnalogInputsId.includes(id)) {
+        return value > 6000
+    }
+    if (DigitalInputsId.includes(id) || DigitalOutputsId.includes(id)) {
+        return value == 1
+    }
+    throw new Error(`Id is not from digital or analog element.`)
 }
 
 export function castAVLIDtoAVLName(elements: getOrganizedElementsReturn | null = null) {

@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.IOelement = exports.isIOelement = exports.getNonFMSorPhysical = exports.getAnalogInputs = exports.getDigitalOutputs = exports.getDigitalInputs = exports.getOrganizedElements = exports.getElementsWithoutFMS = exports.getFMSelements = exports.castAVLIDtoAVLName = exports.isFMSorPhysical = exports.isFMSid = exports.isPhysical = exports.isAnalogInput = exports.isDigitalOutput = exports.isDigitalInput = exports.getAnalogInputsId = exports.getDigitalOutputsId = exports.getDigitalInputsId = exports.avlidDictionary = void 0;
+exports.IOelement = exports.isIOelement = exports.getNonFMSorPhysical = exports.getAnalogInputs = exports.getDigitalOutputs = exports.getDigitalInputs = exports.getOrganizedElements = exports.getElementsWithoutFMS = exports.getFMSelements = exports.castAVLIDtoAVLName = exports.getBooleanDigitalAnalog = exports.isFMSorPhysical = exports.isFMSid = exports.isPhysical = exports.isAnalogInput = exports.isDigitalOutput = exports.isDigitalInput = exports.AnalogInputsId = exports.DigitalOutputsId = exports.DigitalInputsId = exports.avlidDictionary = void 0;
 /**
 * Dictionary for avl name, given the AVL ID.
 * For some cases, the value is a dictionary containing the avl name and the respective table name.
@@ -158,12 +158,9 @@ exports.avlidDictionary = {
     10430: "Tell Tale 2",
     10431: "Tell Tale 3",
 };
-let getDigitalInputsId = () => [1, 2, 3, 4];
-exports.getDigitalInputsId = getDigitalInputsId;
-let getDigitalOutputsId = () => [179, 180, 50, 51];
-exports.getDigitalOutputsId = getDigitalOutputsId;
-let getAnalogInputsId = () => [9, 10, 11, 245];
-exports.getAnalogInputsId = getAnalogInputsId;
+exports.DigitalInputsId = [1, 2, 3, 4];
+exports.DigitalOutputsId = [179, 180, 50, 51];
+exports.AnalogInputsId = [9, 10, 11, 245];
 let isDigitalInput = (id) => [1, 2, 3, 4].includes(id);
 exports.isDigitalInput = isDigitalInput;
 let isDigitalOutput = (id) => [179, 180, 50, 51].includes(id);
@@ -180,6 +177,16 @@ function isFMSorPhysical(id) {
     return exports.isPhysical(id) || isFMSid(id);
 }
 exports.isFMSorPhysical = isFMSorPhysical;
+function getBooleanDigitalAnalog(id, value) {
+    if (exports.AnalogInputsId.includes(id)) {
+        return value > 6000;
+    }
+    if (exports.DigitalInputsId.includes(id) || exports.DigitalOutputsId.includes(id)) {
+        return value == 1;
+    }
+    throw new Error(`Id is not from digital or analog element.`);
+}
+exports.getBooleanDigitalAnalog = getBooleanDigitalAnalog;
 function castAVLIDtoAVLName(elements = null) {
     var avl_names = {};
     //if (elements == null) elements = this.Elements

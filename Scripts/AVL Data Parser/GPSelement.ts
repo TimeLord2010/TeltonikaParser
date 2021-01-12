@@ -1,5 +1,14 @@
 import { PacketReader } from "../PacketReader";
 
+export interface IGPSelement {
+    Longitude : number,
+    Latitude : number,
+    Altitude : number,
+    Angle : number,
+    Satellites : number,
+    Speed : number
+}
+
 const to_binary = (value : number) => (value >>> 0).toString(2)
 
 function ProcessReal(value: number) {
@@ -25,7 +34,22 @@ function getGPSdata (num: number) {
     //expect(result).toBeCloseTo(54.714636)
 }
 
-class GPSelement {
+export function isIGPSelement (obj: any) : obj is IGPSelement {
+    return obj && typeof obj.Angle === 'number' && typeof obj.Longitude === 'number' && typeof obj.Latitude === 'number'
+}
+
+export function defaultGPSElement (longitude: number = 0, latitude: number = 0) : IGPSelement {
+    return {
+        Latitude: latitude,
+        Longitude: longitude,
+        Altitude: 0,
+        Angle: 0,
+        Satellites: 0,
+        Speed: 0
+    }
+}
+
+export class GPSelement {
 
     Longitude: number
     Latitude: number
@@ -44,5 +68,3 @@ class GPSelement {
     }
 
 }
-
-exports.default = GPSelement

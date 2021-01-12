@@ -7,15 +7,16 @@ import { IavlDict } from "../../Interfaces/IavlDict";
 * When the table name is 0, it means that there is not table for that avl.
 */
 export declare const avlidDictionary: IavlDict;
-export declare let getDigitalInputsId: () => number[];
-export declare let getDigitalOutputsId: () => number[];
-export declare let getAnalogInputsId: () => number[];
+export declare const DigitalInputsId: number[];
+export declare const DigitalOutputsId: number[];
+export declare const AnalogInputsId: number[];
 export declare let isDigitalInput: (id: number) => boolean;
 export declare let isDigitalOutput: (id: number) => boolean;
 export declare let isAnalogInput: (id: number) => boolean;
 export declare let isPhysical: (id: number) => boolean;
 export declare function isFMSid(id: number): boolean;
 export declare function isFMSorPhysical(id: number): boolean;
+export declare function getBooleanDigitalAnalog(id: number, value: number): boolean;
 export declare function castAVLIDtoAVLName(elements?: getOrganizedElementsReturn | null): {
     [avlName: string]: any;
 };

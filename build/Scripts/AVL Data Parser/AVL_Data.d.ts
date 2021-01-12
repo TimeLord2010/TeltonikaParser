@@ -1,5 +1,5 @@
-import { IGPSelement } from "../../Interfaces/IGPSelement";
 import { PacketReader } from "../../Scripts/PacketReader";
+import { IGPSelement } from "./GPSelement";
 import { IOelement } from "./IOelement";
 export declare class AVL_Data {
     Timestamp: Date;

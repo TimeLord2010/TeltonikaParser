@@ -1,30 +1,15 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.avlidDictionary = exports.isDigitalOutput = exports.isDigitalInput = exports.isAnalogInput = exports.getOrganizedElements = exports.isFMSorPhysical = exports.isPhysical = exports.isIOelement = exports.isFMSid = exports.getNonFMSorPhysical = exports.getElementsWithoutFMS = exports.getDigitalOutputsId = exports.getDigitalInputsId = exports.getAnalogInputsId = exports.castAVLIDtoAVLName = exports.getFMSelements = exports.getAnalogInputs = exports.getDigitalOutputs = exports.getDigitalInputs = exports.parseIMEI = exports.ProtocolParser = void 0;
+exports.IOelement = exports.isIOelement = exports.FMB640Utils = exports.parseIMEI = exports.ProtocolParser = void 0;
 //import { IProtocolParser } from "../Interfaces/IProtocolParser";
 //import { IData } from "../Interfaces/IData";
 const PacketReader_1 = require("../Scripts/PacketReader");
 const Data_1 = require("./AVL Data Parser/Data");
 const IOelement_1 = require("./AVL Data Parser/IOelement");
-Object.defineProperty(exports, "getDigitalInputs", { enumerable: true, get: function () { return IOelement_1.getDigitalInputs; } });
-Object.defineProperty(exports, "getDigitalOutputs", { enumerable: true, get: function () { return IOelement_1.getDigitalOutputs; } });
-Object.defineProperty(exports, "getAnalogInputs", { enumerable: true, get: function () { return IOelement_1.getAnalogInputs; } });
-Object.defineProperty(exports, "getFMSelements", { enumerable: true, get: function () { return IOelement_1.getFMSelements; } });
-Object.defineProperty(exports, "castAVLIDtoAVLName", { enumerable: true, get: function () { return IOelement_1.castAVLIDtoAVLName; } });
-Object.defineProperty(exports, "getAnalogInputsId", { enumerable: true, get: function () { return IOelement_1.getAnalogInputsId; } });
-Object.defineProperty(exports, "getDigitalInputsId", { enumerable: true, get: function () { return IOelement_1.getDigitalInputsId; } });
-Object.defineProperty(exports, "getDigitalOutputsId", { enumerable: true, get: function () { return IOelement_1.getDigitalOutputsId; } });
-Object.defineProperty(exports, "getElementsWithoutFMS", { enumerable: true, get: function () { return IOelement_1.getElementsWithoutFMS; } });
-Object.defineProperty(exports, "getNonFMSorPhysical", { enumerable: true, get: function () { return IOelement_1.getNonFMSorPhysical; } });
-Object.defineProperty(exports, "isFMSid", { enumerable: true, get: function () { return IOelement_1.isFMSid; } });
+Object.defineProperty(exports, "IOelement", { enumerable: true, get: function () { return 
+    //IOelement as IoElement, 
+    IOelement_1.IOelement; } });
 Object.defineProperty(exports, "isIOelement", { enumerable: true, get: function () { return IOelement_1.isIOelement; } });
-Object.defineProperty(exports, "isFMSorPhysical", { enumerable: true, get: function () { return IOelement_1.isFMSorPhysical; } });
-Object.defineProperty(exports, "avlidDictionary", { enumerable: true, get: function () { return IOelement_1.avlidDictionary; } });
-Object.defineProperty(exports, "isPhysical", { enumerable: true, get: function () { return IOelement_1.isPhysical; } });
-Object.defineProperty(exports, "getOrganizedElements", { enumerable: true, get: function () { return IOelement_1.getOrganizedElements; } });
-Object.defineProperty(exports, "isAnalogInput", { enumerable: true, get: function () { return IOelement_1.isAnalogInput; } });
-Object.defineProperty(exports, "isDigitalInput", { enumerable: true, get: function () { return IOelement_1.isDigitalInput; } });
-Object.defineProperty(exports, "isDigitalOutput", { enumerable: true, get: function () { return IOelement_1.isDigitalOutput; } });
 //import { IGPRSparser } from "../Interfaces/IGPRSparser";
 const GPRSparser_1 = require("./GPRS Parser/GPRSparser");
 const CalcCRC16 = require('./CRC16.js').CalcCRC16;
@@ -78,3 +63,44 @@ function parseIMEI(imei) {
     return decodedIMEI;
 }
 exports.parseIMEI = parseIMEI;
+//export const getDigitalOutputs
+exports.FMB640Utils = {
+    // aiid as AnalogInputsId, 
+    // diid as DigitalInputsId, 
+    // doid as DigitalOutputsId, 
+    // avldict as avlidDictionary,
+    // gdis as getDigitalInputs, 
+    // gdos as getDigitalOutputs, 
+    // gais as getAnalogInputs, 
+    // gfms as getFMSelements, 
+    // castid as castAVLIDtoAVLName, 
+    // gewof as getElementsWithoutFMS, 
+    // gnfp as getNonFMSorPhysical, 
+    // ifid as isFMSid, 
+    // iio as isIOelement, 
+    // isp as isPhysical, 
+    // isfp as isFMSorPhysical, 
+    // goe as getOrganizedElements, 
+    // iai as isAnalogInput, 
+    // idi as isDigitalInput, 
+    // ido as isDigitalOutput, 
+    AnalogInputsId: IOelement_1.AnalogInputsId,
+    DigitalInputsId: IOelement_1.DigitalInputsId,
+    DigitalOutputsId: IOelement_1.DigitalOutputsId,
+    avlidDictionary: IOelement_1.avlidDictionary,
+    getDigitalInputs: IOelement_1.getDigitalInputs,
+    getDigitalOutputs: IOelement_1.getDigitalOutputs,
+    getAnalogInputs: IOelement_1.getAnalogInputs,
+    getFMSelements: IOelement_1.getFMSelements,
+    castAVLIDtoAVLName: IOelement_1.castAVLIDtoAVLName,
+    getElementsWithoutFMS: IOelement_1.getElementsWithoutFMS,
+    getNonFMSorPhysical: IOelement_1.getNonFMSorPhysical,
+    isFMSid: IOelement_1.isFMSid,
+    isPhysical: IOelement_1.isPhysical,
+    isFMSorPhysical: IOelement_1.isFMSorPhysical,
+    getOrganizedElements: IOelement_1.getOrganizedElements,
+    isAnalogInput: IOelement_1.isAnalogInput,
+    isDigitalInput: IOelement_1.isDigitalInput,
+    isDigitalOutput: IOelement_1.isDigitalOutput,
+    getBooleanDigitalAnalog: IOelement_1.getBooleanDigitalAnalog
+};
