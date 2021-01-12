@@ -32,10 +32,10 @@ export declare function getOrganizedElements(_elements: Record<number, number | 
 export declare function getDigitalInputs(_elements: Record<number, number | string> | IOelement): Iphysical<boolean>;
 export declare function getDigitalOutputs(_elements: Record<number, number | string> | IOelement): Record<number, boolean>;
 export declare function getAnalogInputs(_elements: Record<number, number | string> | IOelement): {
-    1: string | number;
-    2: string | number;
-    3: string | number;
-    4: string | number;
+    1: number;
+    2: number;
+    3: number;
+    4: number;
 };
 export declare function getNonFMSorPhysical(_elements: Record<number, number | string> | {
     Elements: Record<number, number | string>;
