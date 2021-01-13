@@ -289,10 +289,10 @@ export function getDigitalOutputs(_elements: Record<number, number | string> | I
 export function getAnalogInputs(_elements: Record<number, number | string> | IOelement) {
     let elements = isIOelement(_elements) ? _elements.Elements : _elements
     return {
-        1: elements[9],
-        2: elements[10],
-        3: elements[11],
-        4: elements[245]
+        1: elements[9] as number,
+        2: elements[10] as number,
+        3: elements[11] as number,
+        4: elements[245] as number
     }
 }
 
