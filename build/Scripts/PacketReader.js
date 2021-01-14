@@ -3,6 +3,12 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.PacketReader = void 0;
 class PacketReader {
     constructor(content, unit_size, converter) {
+        if (content == null) {
+            throw new Error(`Content string was null in packet reader.`);
+        }
+        if (typeof content != 'string') {
+            throw new Error(`Content was not a string in packet reader.`);
+        }
         this.Content = content;
         this.Index = 0;
         this.UnitSize = unit_size;

@@ -1,14 +1,14 @@
 {
   "name": "complete-teltonika-parser",
-  "version": "0.2.7",
+  "version": "0.2.8",
   "description": "Parser for teltonika codecs",
   "main": "build/Scripts/ProtocolParser.js",
   "dependencies": {},
   "devDependencies": {},
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "tsc && cd build && node Scripts/index.js",
     "build" : "tsc",
-    "push": "tsc && git add . && git commit -m \"Adjustment in GPSelement\" && git push origin master && npm publish"
+    "push": "tsc && git add . && git commit -m \"Bug fix in packet reader.\" && git push origin master && npm publish"
   },
   "keywords": [
     "teltonika",
