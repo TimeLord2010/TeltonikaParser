@@ -13,6 +13,24 @@ console.log(imei)
 
 ```
 
+Q: How can I know that a packet is the device imei or the data packet?
+
+A: The packet containing the imei has a constant length: 34
+
+```
+function processPacket (packet) {
+    if (packet.length == 34) {
+        return {
+            imei: parseIMEI(packet)
+        }
+    } else {
+        return { 
+            dataPacket: new ProtocolParser(packet)
+        }
+    }
+}
+```
+
 ProtocolParser has the following signature:
 
 ```typescript
