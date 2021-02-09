@@ -7,8 +7,8 @@
   "devDependencies": {},
   "scripts": {
     "test": "tsc && cd build && node Scripts/index.js",
-    "build" : "tsc",
-    "push": "tsc && git add . && git commit -m \"Bug fix in packet reader.\" && git push origin master && npm publish"
+    "build": "tsc",
+    "push": "tsc && git commit -a -m \"Bug fix in packet reader.\" && git push origin master && npm publish"
   },
   "keywords": [
     "teltonika",
