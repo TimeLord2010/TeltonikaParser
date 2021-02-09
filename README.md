@@ -17,7 +17,7 @@ Q: How can I know that a packet is the device imei or the data packet?
 
 A: The packet containing the imei has a constant length: 34
 
-```
+```javascript
 function processPacket (packet) {
     if (packet.length == 34) {
         return {
