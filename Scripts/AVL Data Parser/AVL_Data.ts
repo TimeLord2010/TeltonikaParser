@@ -1,8 +1,6 @@
 import { PacketReader } from "../../Scripts/PacketReader";
-import { IGPSelement } from "./GPSelement";
+import { GPSelement, IGPSelement } from "./GPSelement";
 import { IOelement } from "./IOelement";
-
-const GPSelement = require('./GPSelement.js').default;
 
 export class AVL_Data  {
     Timestamp : Date
