@@ -73,6 +73,7 @@ export class ProtocolParser {
         });
         this.Packet = packet
         this.Preamble = pr.read(4)
+        if (this.Preamble != 0) throw new Error(`Preamble should be 0.`)
         this.Data_Length = pr.read(4)
         this.CodecID = pr.read(1)
         this.Quantity1 = pr.read(1)
