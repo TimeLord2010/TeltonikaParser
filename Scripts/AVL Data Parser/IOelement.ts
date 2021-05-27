@@ -288,12 +288,12 @@ export function getDigitalOutputs(_elements: Record<number, number | string> | I
 
 export function getAnalogInputs(_elements: Record<number, number | string> | IOelement) {
     let elements = isIOelement(_elements) ? _elements.Elements : _elements
-    return {
-        1: elements[9] as number,
-        2: elements[10] as number,
-        3: elements[11] as number,
-        4: elements[245] as number
-    }
+    let analogs: Partial<Record<1 | 2 | 3 | 4, number>> = {}
+    if (typeof elements[9] == 'number') analogs[1] = elements[9]
+    if (typeof elements[10] == 'number') analogs[2] = elements[10]
+    if (typeof elements[11] == 'number') analogs[3] = elements[11]
+    if (typeof elements[245] == 'number') analogs[4] = elements[245]
+    return analogs
 }
 
 export function getNonFMSorPhysical(_elements: Record<number, number | string> | { Elements : Record<number, number | string>}) {
