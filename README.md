@@ -3,10 +3,15 @@
 Install this parser using npm: `npm i complete-teltonika-parser`
 
 ```javascript
-const { ProtocolParser, parseIMEI } = require('complete-teltonika-parser')
+const { ProtocolParser, parseIMEI, Data, GPRS } = require('complete-teltonika-parser')
 const packet = '00000000000000fd8e0100000176169220e000067673631b1ab6be008f00000f000000000031001800010000020000030100040000b30000b40000320000330000160400470300f00000150300c80000ef00009001004fff0051ff0052ff0053ff0055ff006e01007aff007fff286cff000d00090028000a0036000b003500f50027004327540044000000425c80001800000046009500ecfffd00edffe500ee03d00080ffff00080050ffffffff0054ffffffff0056ffffffff0057ffffffff0058ffffffff0068ffffffff0071ffffffff0087ffffffff000400da0000d546ca81f6ac00db383934343530323700dc303631393934313900dd3332320000000000000001000089fb'
 let parsed = new ProtocolParser(packet)
 console.log(parsed)
+if (parsed.CodecType == "data sending") {
+    let data = parsed.Content as Data
+} else {
+    let gprs = parsed.Content as GPRS
+}
 
 const imei = parseIMEI('000F333532303933303839313638383231')
 console.log(imei)
@@ -99,5 +104,6 @@ function extractValue (x: string) => {
 ## NOTICE
 
 - If the data packet has an invalid CRC, then the parser will fail throwing an exception;
+- The only GPRS codec supported is Codec 12;
 - This is a PROTOCOL parser. It does not parse the device IMEI. For that, use the function parseIMEI;
 - The file "AVL Data Parser/IOelement" has some useful funcitons and an avl id translator for teltonika device model FMB640.
