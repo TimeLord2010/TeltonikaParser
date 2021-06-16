@@ -1,164 +1,6 @@
 import { PacketReader } from "../../Scripts/PacketReader";
 import { Iphysical } from "../../Interfaces/Ilog";
-import { IavlDict } from "../../Interfaces/IavlDict";
-
-/**
-* Dictionary for avl name, given the AVL ID.
-* For some cases, the value is a dictionary containing the avl name and the respective table name.
-* When the table name is 0, it means that there is not table for that avl.
-*/
-export const avlidDictionary: IavlDict = {
-    1: {
-        "AVL_Name": "Digital Input 1",
-        TableName: "DigitalInput1"
-    },
-    2: "Digital Input 2",
-    3: "Digital Input 3",
-    4: {
-        AVL_Name: "Digital Input 4",
-        TableName: "DigitalInput4"
-    },
-    5: {
-        AVL_Name: "Dallas Temperature ID 5",
-        TableName: 0
-    },
-    9: "Analog Input 1",
-    10: "Analog Input 2",
-    11: "Analog Input 3",
-    21: {
-        "AVL_Name": "GSM Signal",
-        "TableName": "GsmSignal"
-    },
-    22: "Data Mode",
-    24: {
-        "AVL_Name": "Speed",
-        "TableName": 0
-    },
-    50: "Digital Output 3",
-    51: "Digital Output 4",
-    66: "External Voltage",
-    67: "Battery Voltage",
-    68: "Battery Current",
-    70: {
-        "AVL_Name": "PCB Temperature",
-        "TableName": 'PcbTemperature'
-    },
-    71: {
-        "AVL_Name": "GNSS Status",
-        "TableName": 'GnssSignal'
-    },
-    72: "Dallas Temperature 1",
-    78: "iButton",
-    79: {
-        "AVL_Name": "Brake Switch"
-    },
-    80: "Wheel Based Speed",
-    81: "Cruise Control Active",
-    82: "Clutch Switch",
-    83: "PTO State",
-    84: "Acceleration Pedal Position",
-    85: "Engine Current Load",
-    86: "Engine Total Fuel Used",
-    87: "Fuel Level",
-    88: "Engine Speed",
-    89: "Axle weight 1",
-    90: "Axle weight 2",
-    91: "Axle weight 3",
-    92: "Axle weight 4",
-    93: "Axle weight 5",
-    94: "Axle weight 6",
-    95: "Axle weight 7",
-    96: "Axle weight 8",
-    97: "Axle weight 9",
-    98: "Axle weight 10",
-    99: "Axle weight 11",
-    100: "Axle weight 12",
-    101: "Axle weight 13",
-    102: "Axle weight 14",
-    103: "Axle weight 15",
-    104: "Engine Total Hours Of Operation",
-    110: "Diagnostics Supported",
-    113: "Service Distance",
-    122: "Direction Indication",
-    123: "Tachograph Performance",
-    124: "Handling Info",
-    125: "System Event",
-    127: "Engine Coolant Temperature",
-    128: "Ambient Air Temperature",
-    135: "Fuel Rate",
-    136: "Instantaneous Fuel Economy",
-    137: "PTO Drive Engagement",
-    138: "High Resolution Engine Total Fuel Used",
-    139: "Gross Combination Vehicle Weight",
-    144: {
-        "AVL_Name": "SD Status",
-        'TableName': 'SdStatus'
-    },
-    178: {
-        "AVL_Name": 'Network Type',
-        'TableName': 0
-    },
-    179: "Digital Output 1",
-    180: "Digital Output 2",
-    181: {
-        'AVL_Name': "GNSS PDOP",
-        "TableName": 0
-    },
-    182: {
-        'AVL_Name': "GNSS HDOP",
-        "TableName": 0
-    },
-    199: "Trip Odometer",
-    200: "Sleep Mode",
-    205: {
-        'AVL_Name': "GSM Cell ID",
-        "TableName": 0
-    },
-    206: {
-        'AVL_Name': "GSM Area Code",
-        "TableName": 0
-    },
-    216: "Total Odometer",
-    218: {
-        'AVL_Name': 'IMSI',
-        "TableName": 0
-    },
-    219: {
-        'AVL_Name': 'CCID Part1',
-        "TableName": 0
-    },
-    220: {
-        'AVL_Name': 'CCID Part2',
-        "TableName": 0
-    },
-    221: {
-        'AVL_Name': 'CCID Part3',
-        "TableName": 0
-    },
-    236: "Axis X",
-    237: "Axis Y",
-    238: "Axis Z",
-    239: "Ignition",
-    240: "Movement",
-    241: {
-        'AVL_Name': "Active GSM Operator",
-        "TableName": 0
-    },
-    243: "Idling",
-    245: "Analog Input 4",
-    246: "Towing",
-    247: "Crash Detection",
-    249: "Jamming",
-    251: "Immobilizer",
-    253: "Green Driving Type",
-    255: "Over Speeding",
-    10348: "Fuel level 2",
-    10349: "MIL indicator",
-    10428: "Tell Tale 0",
-    10429: "Tell Tale 1",
-    10430: "Tell Tale 2",
-    10431: "Tell Tale 3",
-};
+import { avlidDictionary } from "./FMB640/avlDict";
 
 export const DigitalInputsId = [1, 2, 3, 4]
 
@@ -210,9 +52,6 @@ export function castAVLIDtoAVLName(elements: getOrganizedElementsReturn | null =
         if (translated == null) continue
         if (typeof translated === 'string') {
             avl_names[translated] = value;
-        } else {
-            if (!translated.hasOwnProperty("AVL_Name")) continue
-            avl_names[translated.AVL_Name] = value;
         }
     }
     return avl_names;
@@ -385,5 +224,4 @@ export class IOelement {
             if (on_error != null) on_error(e);
         }
     }
-
 }
