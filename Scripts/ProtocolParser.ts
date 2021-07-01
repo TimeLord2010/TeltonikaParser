@@ -1,5 +1,6 @@
 //import { IProtocolParser } from "../Interfaces/IProtocolParser";
 //import { IData } from "../Interfaces/IData";
+import { avlidDictionary } from './AVL Data Parser/FMB640/avlDict'
 import { PacketReader } from '../Scripts/PacketReader'
 import { AVL_Data as AvlData } from './AVL Data Parser/AVL_Data';
 import { Data as _data } from './AVL Data Parser/Data'
@@ -38,7 +39,6 @@ import {
     getNonFMSorPhysical, 
     isFMSid, 
     isFMSorPhysical, 
-    avlidDictionary, 
     isPhysical, 
     getOrganizedElements, 
     isAnalogInput, 
@@ -49,7 +49,7 @@ import {
 //import { IGPRSparser } from "../Interfaces/IGPRSparser";
 import { GPRS as gprs } from './GPRS Parser/GPRSparser'
 
-const CalcCRC16 = require('./CRC16.js').CalcCRC16;
+import { CalcCRC16 } from './CRC16';
 
 export class ProtocolParser {
     Packet : string
@@ -62,7 +62,7 @@ export class ProtocolParser {
     Quantity2: number
     CRC: number
 
-    constructor(packet: string, basic_read: boolean, on_ioElement_error: (e: Error) => void) {
+    constructor(packet: string, basic_read: boolean = false, on_ioElement_error: (e: Error) => void = (e) => {throw e}) {
         var pr = new PacketReader<number>(packet, 2, (x: string) => {
             var y: any = parseInt(x, 16);
             if (y > Number.MAX_SAFE_INTEGER) {
