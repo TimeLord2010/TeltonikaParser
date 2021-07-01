@@ -5,7 +5,12 @@
   "main": "build/Scripts/ProtocolParser.js",
   "dependencies": {},
   "devDependencies": {
-    "@types/node": "^15.3.0"
+    "@types/jest": "^26.0.23",
+    "@types/node": "^15.3.0",
+    "jest": "^27.0.6",
+    "ts-jest": "^27.0.3",
+    "ts-node": "^10.0.0",
+    "typescript": "^4.3.5"
   },
   "scripts": {
     "test": "tsc && cd build && node Scripts/index.js",
