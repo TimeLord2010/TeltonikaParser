@@ -1,3 +1,7 @@
 /Interfaces/
 /Scripts/
 /test/
+jest.config.js
+debug.log
+tsconfig.json
+README.md
