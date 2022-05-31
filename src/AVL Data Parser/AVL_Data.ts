@@ -1,15 +1,15 @@
-import { PacketReader } from "../../Scripts/PacketReader";
+import { PacketReader } from "../PacketReader";
 import { GPSelement, IGPSelement } from "./GPSelement";
 import { IOelement } from "./IOelement";
 
-export class AVL_Data  {
-    Timestamp : Date
+export class AVL_Data {
+    Timestamp: Date
     //Timestamp : number
-    Priority : number
-    GPSelement : IGPSelement
-    IOelement : IOelement
+    Priority: number
+    GPSelement: IGPSelement
+    IOelement: IOelement
 
-    constructor(packet_reader : PacketReader<number>, on_ioElement_error : (e : Error) => void, codec_id : number) {
+    constructor(packet_reader: PacketReader<number>, on_ioElement_error: (e: Error) => void, codec_id: number) {
         //this.Timestamp = packet_reader.read(8) / 1000;
         this.Timestamp = new Date(packet_reader.read(8))
         this.Priority = packet_reader.read(1)

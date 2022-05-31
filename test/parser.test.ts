@@ -1,5 +1,5 @@
-import { Data } from "../Scripts/AVL Data Parser/Data"
-import { ProtocolParser } from "../Scripts/ProtocolParser"
+import { Data } from "../src/AVL Data Parser/Data"
+import { ProtocolParser } from "../src/ProtocolParser"
 
 test('Packet 1', () => {
     let packet = '000000000000009C080100000176BB09C2CD0005DBE6381B231893006A010B1300000025100100020003010400B300B4003200330016044703F0001504B201C800EF0090010F0900270A000A0B0017F5000A432683440000B50008B6000642620918000046009DCE274DECFC53EDFF9BEEFF1202F1000056C2CD000096F104DA0000D546CACF39A3DB3839343435303233DC3132313930303533DD343733000000000001000013D1'
@@ -10,7 +10,7 @@ test('Packet 1', () => {
     let { AVL_Datas } = Content as Data
     expect(AVL_Datas.length).toEqual(1)
     let [AVL_Data] = AVL_Datas
-    let { 
+    let {
         GPSelement: {
             Latitude,
             Longitude,
@@ -18,12 +18,12 @@ test('Packet 1', () => {
             Angle,
             Satellites,
             Speed
-        }, 
+        },
         IOelement: {
             Elements,
             ElementCount
-        }, 
-        Timestamp 
+        },
+        Timestamp
     } = AVL_Data
     expect(Timestamp).toBeInstanceOf(Date)
     expect(Timestamp.toISOString()).toBe('2020-12-31T23:02:27.789Z')
@@ -51,7 +51,7 @@ test('Packet 2', () => {
     let { AVL_Datas } = Content as Data
     expect(AVL_Datas.length).toEqual(1)
     let [AVL_Data] = AVL_Datas
-    let { 
+    let {
         GPSelement: {
             Latitude,
             Longitude,
@@ -59,12 +59,12 @@ test('Packet 2', () => {
             Angle,
             Satellites,
             Speed
-        }, 
+        },
         IOelement: {
             Elements,
             ElementCount
-        }, 
-        Timestamp 
+        },
+        Timestamp
     } = AVL_Data
     expect(Timestamp).toBeInstanceOf(Date)
     expect(Timestamp.toISOString()).toBe('2021-06-28T13:43:25.000Z')

@@ -1,5 +1,5 @@
-import { PacketReader } from "../../Scripts/PacketReader";
 import { Iphysical } from "../../Interfaces/Ilog";
+import { PacketReader } from "../PacketReader";
 import { avlidDictionary as FMB640AvlidDictionary } from "./FMB640/avlDict";
 
 export const DigitalInputsId = [1, 2, 3, 4];
