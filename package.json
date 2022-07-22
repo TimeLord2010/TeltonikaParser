@@ -1,6 +1,6 @@
 {
   "name": "complete-teltonika-parser",
-  "version": "0.3.5",
+  "version": "0.3.6",
   "description": "Parser for teltonika codecs",
   "main": "build/Scripts/ProtocolParser.js",
   "dependencies": {},
