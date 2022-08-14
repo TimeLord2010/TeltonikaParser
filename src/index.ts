@@ -1,8 +1,14 @@
-import {
-  castAVLIDtoAVLName,
-  getOrganizedElements
-} from "./AVL Data Parser/IOelement";
+import util from 'util';
+import { FMB640Parser } from "./AVL Data Parser/FMB640/fmb640Parser";
 import { Data, GPRS, ProtocolParser } from "./ProtocolParser";
+
+function log(obj: any) {
+  console.log(util.inspect(obj, {
+    showHidden: false,
+    depth: null,
+    colors: true
+  }))
+}
 
 let packet =
   "00000000000001DF8E0200000173951D45F100080DF78A1B4BB3D2000A000011000000000029001000010100020100030000040000B30000B40000320000330000160500470300F00100150400B20100C80000EF01009001000F00090016000A000F000B000C00F5050B004325B00044003300B5000A00B6000600426B82001800000046019B00CE4E5400EC00EE00ED005900EE03BD000200F1000056C200CD0000440E000800DA0000D548705BEF7E00DB383934343530323100DC303931383433343800DD373830000000000028BC000000000000000028BD000000000000000028BE000000000000000028BF0000000000000000000000000173951D808D00080DF78A1B4BB3D2000A000010000000000029001000010100020100030000040000B30000B40000320000330000160500470300F00100150400B20100C80000EF01009000000F00090012000A0012000B000C00F50536004325B60044003200B5000A00B6000600426B61001800000046019800CE4E5400EC00E600ED005900EE03BD000200F1000056C200CD0000440E000800DA0000D548705BEF7E00DB383934343530323100DC303931383433343800DD373830000000000028BC000000000000000028BD000000000000000028BE000000000000000028BF000000000000000000000200009065";
@@ -11,21 +17,19 @@ let parsed = new ProtocolParser(packet, false, (e) => {
   throw e;
 });
 
-console.log(parsed);
+log(parsed);
 
 if (parsed.CodecType == "data sending") {
   let data = parsed.Content as Data;
-  console.log(data);
-
-  // FMX XXX data sending parameters ID
-  const customAvlidDict = {
-    1: "Digital Input 1",
-    //...
-  };
-  const organizedElements = getOrganizedElements(data.AVL_Datas[0]!.IOelement);
-  // customAvlidDict is optional and when unspecified, FMB640's parameters ID will be used
-  const avl_names = castAVLIDtoAVLName(organizedElements, customAvlidDict);
-  console.log(avl_names);
+  log(data);
+  const fmb640parser = new FMB640Parser()
+  const elements = data.AVL_Datas[0]!.IOelement.Elements
+  const readableElements = fmb640parser.castAVLIDtoAVLName(elements)
+  const organizedElements = fmb640parser.castAvlIdDicToCategories(elements)
+  log({
+    readableElements,
+    organizedElements,
+  });
 } else {
   let gprs = parsed.Content as GPRS;
 }

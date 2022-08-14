@@ -59,19 +59,19 @@ export function gerateCodec12(command: string) {
 export function parseCodec12(hexStr: string) {
     let [preamble, content, crc] = splitAt(hexStr, 8, -8)
     if (preamble !== ''.padStart(8, '0')) throw new Error(`Invalid preamble.`)
-    let [dataSize, data] = splitAt(content, 8)
-    if (parseInt(dataSize, 16) !== data.length / 2) throw new Error(`Data size doesn't match with the actual data size.`)
-    let calculatedCRC = calcCRC16(data)
+    let [dataSize, data] = splitAt(content!, 8)
+    if (parseInt(dataSize!, 16) !== data!.length / 2) throw new Error(`Data size doesn't match with the actual data size.`)
+    let calculatedCRC = calcCRC16(data!)
     if (crc !== calculatedCRC) throw new Error(`CRCs don't match.`)
-    let [codec, quantity1, type, commandContent, quantity2] = splitAt(data, 2, 2, 2, -2)
+    let [codec, quantity1, type, commandContent, quantity2] = splitAt(data!, 2, 2, 2, -2)
     if (quantity1 !== quantity2) throw new Error(`Command quantity did not match.`)
     if (codec == '0C') {
-        if (!['05', '06'].includes(type)) throw new Error(`Invalid type.`)
-        let [commandSize, command] = splitAt(commandContent, 8)
-        if (parseInt(commandSize, 16) !== command.length / 2) throw new Error(`Command/Response size doesn't match with the actual size.`)
+        if (!['05', '06'].includes(type!)) throw new Error(`Invalid type.`)
+        let [commandSize, command] = splitAt(commandContent!, 8)
+        if (parseInt(commandSize!, 16) !== command!.length / 2) throw new Error(`Command/Response size doesn't match with the actual size.`)
         return {
             isResponse: type === '06',
-            command: hexToAscII(command)
+            command: hexToAscII(command!)
         }
     } else {
         throw new Error(`Not implemented`)

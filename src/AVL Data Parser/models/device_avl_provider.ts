@@ -1,16 +1,4 @@
-interface organizedIdElements {
-    FMS: Record<number, number | string>;
-    [avlId: number]: number | string;
-}
-
-interface organizedNameElements {
-    FMS: {
-        [fmsName: string]: number | string;
-    }
-    [avlName: string]: number | string | Record<string, number | string>;
-}
-
-abstract class DeviceAvlProvider {
+export abstract class DeviceAvlProvider {
     /**
      * The input voltage for the device.
      * This value should be in milivolts like 12000 or 24000.
@@ -21,7 +9,27 @@ abstract class DeviceAvlProvider {
     abstract get digitalInputIds(): number[]
     abstract get digitalOutputsIds(): number[]
     abstract get analogInputsIds(): number[]
-    abstract isFMS(id: number): boolean
+
+    abstract get categories(): Record<string, ((id: number) => boolean) | (number | [number, number])[]>
+
+    getCategory(id: number): string | null {
+        for (const [category, evaluator] of Object.entries(this.categories)) {
+            if (typeof evaluator == 'function') {
+                const isFromCategory = evaluator(id)
+                if (isFromCategory) return category
+            } else {
+                for (const item of evaluator) {
+                    if (typeof item == 'number') {
+                        if (item == id) return category
+                    } else {
+                        const [start, end] = item
+                        if (start >= id && id <= end) return category
+                    }
+                }
+            }
+        }
+        return null
+    }
 
     isDigitalInput(id: number) {
         return this.digitalInputIds.includes(id)
@@ -63,35 +71,43 @@ abstract class DeviceAvlProvider {
         return value
     }
 
-    private _castAvlIdsToAvlNames(elements: Record<number, string | number>) {
-        const value: Record<string, number | string> = {}
-        const ids = Object.keys(elements)
-        for (const id of ids) {
-            if (!this.avlIdDic.hasOwnProperty(id)) continue;
-            var translated = this.avlIdDic[Number(id)];
-            if (translated == null) continue;
-            value[translated] = elements[Number(id)]!;
-        }
-        return value
-    }
-
-    castAVLIDtoAVLName(elements: organizedIdElements) {
-        var avl_names: organizedNameElements = {
-            FMS: {}
-        };
-        var keys = Object.keys(elements);
-        for (const key of keys) {
-            if (key == "FMS") {
-                var value = elements.FMS
-                avl_names["FMS"] = this._castAvlIdsToAvlNames(value);
+    castAvlIdDicToCategories<T>(elements: Record<number, any>): {
+        avlCategories: Record<number, any>,
+        extras?: Record<number, any>
+    } {
+        const avlCategories: Record<string, Record<string, T>> = {}
+        let extras: Record<number, any> = {}
+        for (const [id, value] of Object.entries(elements)) {
+            const _id = Number(id)
+            const categoryName = this.getCategory(_id)
+            if (categoryName) {
+                if (avlCategories[categoryName] == null) {
+                    avlCategories[categoryName] = {}
+                }
+                const avlName = this.avlIdDic[_id]
+                if (avlName) {
+                    avlCategories[categoryName]![avlName] = value
+                }
             } else {
-                if (!this.avlIdDic.hasOwnProperty(key)) continue;
-                var translated = this.avlIdDic[Number(key)];
-                if (translated == null) continue;
-                avl_names[translated] = elements[Number(key)]!;
+                extras[_id] = value
             }
         }
-        return avl_names;
+        if (Object.keys(extras).length == 0) {
+            return { avlCategories }
+        }
+        return { avlCategories, extras }
+    }
+
+    castAVLIDtoAVLName<T>(elements: Record<number, T>) {
+        const translated: Record<string, T> = {}
+        for (const [id, value] of Object.entries(elements)) {
+            const _id = Number(id)
+            const name = this.avlIdDic[_id]
+            if (name) {
+                translated[name] = value
+            }
+        }
+        return translated;
     }
 
 }

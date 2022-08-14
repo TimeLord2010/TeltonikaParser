@@ -1,40 +1,10 @@
-//import { IProtocolParser } from "../Interfaces/IProtocolParser";
-//import { IData } from "../Interfaces/IData";
 import { AVL_Data as AvlData } from './AVL Data Parser/AVL_Data';
 import { Data as _data } from './AVL Data Parser/Data';
-import { avlidDictionary } from './AVL Data Parser/FMB640/avlDict';
 import {
-    AnalogInputsId, castAVLIDtoAVLName, DigitalInputsId,
-    DigitalOutputsId, getAnalogInputs, getBooleanDigitalAnalog,
-    // getDigitalInputs as gdis, 
-    // getDigitalOutputs as gdos, 
-    // getAnalogInputs as gais, 
-    // getFMSelements as gfms, 
-    // castAVLIDtoAVLName as castid, 
-    // AnalogInputsId as aiid, 
-    // DigitalInputsId as diid, 
-    // DigitalOutputsId as doid, 
-    // getElementsWithoutFMS as gewof, 
-    // getNonFMSorPhysical as gnfp, 
-    // isFMSid as ifid, 
-    // isIOelement as iio, 
-    // isFMSorPhysical as isfp, 
-    // avlidDictionary as avldict, 
-    // isPhysical as isp, 
-    // getOrganizedElements as goe, 
-    // isAnalogInput as iai, 
-    // isDigitalInput as idi, 
-    // isDigitalOutput as ido
-    getDigitalInputs,
-    getDigitalOutputs, getElementsWithoutFMS, getFMSelements, getNonFMSorPhysical, getOrganizedElements,
-    //IOelement as IoElement, 
-    IOelement, isAnalogInput,
-    isDigitalInput,
-    isDigitalOutput, isFMSid,
-    isFMSorPhysical, isIOelement, isPhysical
+    IOelement,
+    isIOelement
 } from './AVL Data Parser/IOelement';
 import { CalcCRC16 } from './CRC16';
-//import { IGPRSparser } from "../Interfaces/IGPRSparser";
 import { GPRS as gprs } from './GPRS Parser/GPRSparser';
 import { PacketReader } from './PacketReader';
 
@@ -95,48 +65,27 @@ export function parseIMEI(imei: string): string {
     return decodedIMEI
 }
 
-//export const getDigitalOutputs
-
-export const FMB640Utils = {
-    // aiid as AnalogInputsId, 
-    // diid as DigitalInputsId, 
-    // doid as DigitalOutputsId, 
-    // avldict as avlidDictionary,
-    // gdis as getDigitalInputs, 
-    // gdos as getDigitalOutputs, 
-    // gais as getAnalogInputs, 
-    // gfms as getFMSelements, 
-    // castid as castAVLIDtoAVLName, 
-    // gewof as getElementsWithoutFMS, 
-    // gnfp as getNonFMSorPhysical, 
-    // ifid as isFMSid, 
-    // iio as isIOelement, 
-    // isp as isPhysical, 
-    // isfp as isFMSorPhysical, 
-    // goe as getOrganizedElements, 
-    // iai as isAnalogInput, 
-    // idi as isDigitalInput, 
-    // ido as isDigitalOutput, 
-    AnalogInputsId,
-    DigitalInputsId,
-    DigitalOutputsId,
-    avlidDictionary,
-    getDigitalInputs,
-    getDigitalOutputs,
-    getAnalogInputs,
-    getFMSelements,
-    castAVLIDtoAVLName,
-    getElementsWithoutFMS,
-    getNonFMSorPhysical,
-    isFMSid,
-    isPhysical,
-    isFMSorPhysical,
-    getOrganizedElements,
-    isAnalogInput,
-    isDigitalInput,
-    isDigitalOutput,
-    getBooleanDigitalAnalog
-}
+// export const FMB640Utils = {
+//     AnalogInputsId,
+//     DigitalInputsId,
+//     DigitalOutputsId,
+//     avlidDictionary,
+//     getDigitalInputs,
+//     getDigitalOutputs,
+//     getAnalogInputs,
+//     getFMSelements,
+//     castAVLIDtoAVLName,
+//     getElementsWithoutFMS,
+//     getNonFMSorPhysical,
+//     isFMSid,
+//     isPhysical,
+//     isFMSorPhysical,
+//     getOrganizedElements,
+//     isAnalogInput,
+//     isDigitalInput,
+//     isDigitalOutput,
+//     getBooleanDigitalAnalog
+// }
 
 export { isIOelement };
 export { IOelement };

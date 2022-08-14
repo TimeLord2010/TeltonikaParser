@@ -24,7 +24,7 @@ test('Packet 1', () => {
             ElementCount
         },
         Timestamp
-    } = AVL_Data
+    } = AVL_Data!
     expect(Timestamp).toBeInstanceOf(Date)
     expect(Timestamp.toISOString()).toBe('2020-12-31T23:02:27.789Z')
     expect(Altitude).toEqual(106)
@@ -65,7 +65,7 @@ test('Packet 2', () => {
             ElementCount
         },
         Timestamp
-    } = AVL_Data
+    } = AVL_Data!
     expect(Timestamp).toBeInstanceOf(Date)
     expect(Timestamp.toISOString()).toBe('2021-06-28T13:43:25.000Z')
     expect(Altitude).toEqual(0)
