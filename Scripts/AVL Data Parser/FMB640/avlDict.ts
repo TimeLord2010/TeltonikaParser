@@ -69,6 +69,7 @@ export const avlidDictionary: Record<number, string> = {
     180: "Digital Output 2",
     181: "GNSS PDOP",
     182: "GNSS HDOP",
+    194: "Sample Time",
     199: "Trip Odometer",
     200: "Sleep Mode",
     205: "GSM Cell ID",
